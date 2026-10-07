@@ -13,7 +13,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://*.googleapis.com https://*.openai.com https://api.anthropic.com https://api.groq.com https://openrouter.ai https://api.together.xyz https://api.cerebras.ai https://api.huggingface.co https://api.mistral.ai https://api.cohere.ai https://api.deepinfra.com https://api.cloudflare.com https://api.gptzero.me https://api.z.ai; img-src 'self' data: blob:; font-src 'self' https://fonts.gstatic.com; frame-ancestors 'none';",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://widgets.cleverhumanizer.ai; style-src 'self' 'unsafe-inline'; frame-src 'self' https://widgets.cleverhumanizer.ai; connect-src 'self' https://widgets.cleverhumanizer.ai https://*.googleapis.com https://*.openai.com https://api.anthropic.com https://api.groq.com https://openrouter.ai https://api.together.xyz https://api.cerebras.ai https://api.huggingface.co https://api.mistral.ai https://api.cohere.ai https://api.deepinfra.com https://api.cloudflare.com https://api.gptzero.me https://api.z.ai; img-src 'self' data: blob: https://widgets.cleverhumanizer.ai; font-src 'self' https://fonts.gstatic.com; frame-ancestors 'none';",
           },
           {
             key: 'X-Frame-Options',
