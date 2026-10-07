@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://stealthhumanizer.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sos.sanvox.in';
   return [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
   ];

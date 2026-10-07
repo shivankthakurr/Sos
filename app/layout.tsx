@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://sos-ruk2.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://sos.sanvox.in';
 
 export const metadata: Metadata = {
   title: 'Sanvox AI — Next-Gen AI Text Humanizer & Detection Forensics | by Shivank Thakur',
