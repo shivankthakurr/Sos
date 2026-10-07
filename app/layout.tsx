@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://sos-ruk2.vercel.app');
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://sos-ruk2.vercel.app';
 
 export const metadata: Metadata = {
   title: 'Sanvox AI — Next-Gen AI Text Humanizer & Detection Forensics | by Shivank Thakur',
@@ -24,24 +22,24 @@ export const metadata: Metadata = {
     title: 'Sanvox AI — Next-Gen AI Text Humanizer & Detector',
     description:
       'Transform AI-generated text into 100% natural, expressive, human-quality writing with Sanvox AI. Bypass GPTZero, Turnitin, and modern AI detectors. Developed by Shivank Thakur.',
-    url: '/',
+    url: SITE_URL,
     siteName: 'Sanvox AI',
     type: 'website',
     locale: 'en_US',
     images: [
       {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Sanvox AI — Next-Gen AI Text Humanizer & Detector by Shivank Thakur',
-        type: 'image/png',
-      },
-      {
-        url: '/og-image.jpg',
+        url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'Sanvox AI — Next-Gen AI Text Humanizer & Detector by Shivank Thakur',
         type: 'image/jpeg',
+      },
+      {
+        url: `${SITE_URL}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Sanvox AI — Next-Gen AI Text Humanizer & Detector by Shivank Thakur',
+        type: 'image/png',
       },
     ],
   },
@@ -51,7 +49,7 @@ export const metadata: Metadata = {
     description:
       'Transform AI-generated text into authentic, undetectable human prose with Sanvox AI. Developed by Shivank Thakur.',
     creator: '@shivankthakur',
-    images: ['/og-image.png'],
+    images: [`${SITE_URL}/og-image.jpg`],
   },
   robots: {
     index: true,
@@ -59,10 +57,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/sanvox-logo.png?v=4', type: 'image/png' },
-      { url: '/favicon.ico?v=4' },
+      { url: '/sanvox-logo.png?v=5', type: 'image/png' },
+      { url: '/favicon.ico?v=5' },
     ],
-    apple: '/sanvox-logo.png?v=4',
+    apple: '/sanvox-logo.png?v=5',
   },
   category: 'technology',
 };
@@ -95,21 +93,29 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#080c16" />
+        
+        {/* Primary OpenGraph metadata for WhatsApp, Telegram, Facebook */}
         <meta property="og:title" content="Sanvox AI — Next-Gen AI Text Humanizer & Detector" />
         <meta property="og:description" content="Transform AI-generated text into 100% natural, expressive, human-quality writing with Sanvox AI. Developed by Shivank Thakur." />
-        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
-        <meta property="og:image:secure_url" content={`${SITE_URL}/og-image.png`} />
-        <meta property="og:image:type" content="image/png" />
+        <meta property="og:url" content={SITE_URL} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Sanvox AI" />
+        <meta property="og:image" content={`${SITE_URL}/og-image.jpg`} />
+        <meta property="og:image:secure_url" content={`${SITE_URL}/og-image.jpg`} />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Sanvox AI - AI Text Humanizer by Shivank Thakur" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Sanvox AI" />
+
+        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Sanvox AI — Next-Gen AI Text Humanizer & Detector" />
         <meta name="twitter:description" content="Transform AI-generated text into authentic, undetectable human prose with Sanvox AI. Developed by Shivank Thakur." />
-        <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
-        <link rel="image_src" href={`${SITE_URL}/og-image.png`} />
+        <meta name="twitter:image" content={`${SITE_URL}/og-image.jpg`} />
+
+        {/* WhatsApp & Legacy crawlers fallback */}
+        <link rel="image_src" href={`${SITE_URL}/og-image.jpg`} />
+
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body className="antialiased">
