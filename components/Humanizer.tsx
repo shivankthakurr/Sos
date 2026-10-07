@@ -832,7 +832,7 @@ export default function Humanizer({ showToast, onGoToSettings, onGoToClever, isF
               {onGoToClever && (
                 <button onClick={onGoToClever}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 font-semibold text-xs transition-all">
-                  <Zap className="w-4 h-4 text-emerald-400" /> Use Free Clever Engine &rarr;
+                  <Zap className="w-4 h-4 text-emerald-400" /> Use Instant Cloud Engine &rarr;
                 </button>
               )}
             </div>
@@ -853,9 +853,9 @@ export default function Humanizer({ showToast, onGoToSettings, onGoToClever, isF
             <button
               onClick={onGoToClever}
               className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-400 font-semibold text-xs transition-all shadow-sm"
-              title="Open Clever AI Free Cloud Humanizer"
+              title="Open Sanvox Instant Cloud Humanizer"
             >
-              <Zap className="w-3.5 h-3.5" /> Free Clever Engine
+              <Zap className="w-3.5 h-3.5" /> Instant Cloud Engine
             </button>
           )}
           <button onClick={() => setShowShortcuts(!showShortcuts)} className="flex items-center gap-1 px-3 py-2 rounded-lg bg-dark-800 hover:bg-dark-700 text-dark-400 hover:text-white text-sm transition-colors">

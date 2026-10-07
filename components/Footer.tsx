@@ -94,33 +94,10 @@ export default function Footer() {
             . All rights reserved.
           </p>
           <div className="flex items-center gap-4 flex-wrap">
-            <a
-              href="https://cleverhumanizer.ai"
-              target="_blank"
-              rel="nofollow noopener noreferrer"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '6px 14px',
-                border: '1.5px solid #0E7B54',
-                borderRadius: '999px',
-                color: '#0E7B54',
-                font: '700 12px system-ui, sans-serif',
-                textDecoration: 'none',
-                background: '#062016'
-              }}
-              className="hover:opacity-90 transition-opacity"
-            >
-              <img
-                src="https://cleverhumanizer.ai/assets/img/logo-ai-humanizer40x40@2x.png"
-                alt="Clever AI"
-                width="16"
-                height="16"
-                style={{ borderRadius: '4px', display: 'block' }}
-              />
-              Checked by Clever AI Detector
-            </a>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 border border-emerald-500/25 text-emerald-400">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              Verified by Sanvox AI Engine
+            </span>
             <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-green-400" /> 100% Privacy</span>
             <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 text-accent-400" /> Neural Rewriting</span>
           </div>

@@ -12,7 +12,7 @@ interface NavbarProps {
 
 const tabs: { id: Tab; label: string; icon: typeof Sparkles }[] = [
   { id: 'humanizer', label: 'Humanizer', icon: Sparkles },
-  { id: 'clever', label: 'Clever Free', icon: Zap },
+  { id: 'clever', label: 'Cloud Engine', icon: Zap },
   { id: 'detector', label: 'AI Detector', icon: Search },
   { id: 'batch', label: 'Batch Mode', icon: Layers },
   { id: 'dashboard', label: 'Analytics', icon: Activity },

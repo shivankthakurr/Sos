@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-const SITE_URL = 'https://shivankthakur.com';
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://sos-ruk2.vercel.app');
 
 export const metadata: Metadata = {
   title: 'Sanvox AI — Next-Gen AI Text Humanizer & Detection Forensics | by Shivank Thakur',
@@ -17,12 +19,12 @@ export const metadata: Metadata = {
   creator: 'Shivank Thakur',
   publisher: 'Sanvox AI',
   metadataBase: new URL(SITE_URL),
-  alternates: { canonical: SITE_URL },
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'Sanvox AI — Next-Gen AI Text Humanizer & Detector',
     description:
-      'Transform AI text into authentic human writing. Bypass GPTZero & modern AI detectors. Developed by Shivank Thakur.',
-    url: SITE_URL,
+      'Transform AI-generated text into 100% natural, expressive, human-quality writing with Sanvox AI. Bypass GPTZero, Turnitin, and modern AI detectors. Developed by Shivank Thakur.',
+    url: '/',
     siteName: 'Sanvox AI',
     type: 'website',
     locale: 'en_US',
@@ -31,7 +33,15 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Sanvox AI — Developed by Shivank Thakur',
+        alt: 'Sanvox AI — Next-Gen AI Text Humanizer & Detector by Shivank Thakur',
+        type: 'image/png',
+      },
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Sanvox AI — Next-Gen AI Text Humanizer & Detector by Shivank Thakur',
+        type: 'image/jpeg',
       },
     ],
   },
@@ -39,7 +49,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Sanvox AI — Next-Gen AI Text Humanizer & Detector',
     description:
-      'Transform AI text into authentic human writing. Bypass GPTZero & modern AI detectors. Developed by Shivank Thakur.',
+      'Transform AI-generated text into authentic, undetectable human prose with Sanvox AI. Developed by Shivank Thakur.',
     creator: '@shivankthakur',
     images: ['/og-image.png'],
   },
@@ -49,10 +59,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/sanvox-logo.png?v=3', type: 'image/png' },
-      { url: '/favicon.ico?v=3' },
+      { url: '/sanvox-logo.png?v=4', type: 'image/png' },
+      { url: '/favicon.ico?v=4' },
     ],
-    apple: '/sanvox-logo.png?v=3',
+    apple: '/sanvox-logo.png?v=4',
   },
   category: 'technology',
 };
@@ -84,7 +94,22 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#0a0a0f" />
+        <meta name="theme-color" content="#080c16" />
+        <meta property="og:title" content="Sanvox AI — Next-Gen AI Text Humanizer & Detector" />
+        <meta property="og:description" content="Transform AI-generated text into 100% natural, expressive, human-quality writing with Sanvox AI. Developed by Shivank Thakur." />
+        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:image:secure_url" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Sanvox AI - AI Text Humanizer by Shivank Thakur" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Sanvox AI" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sanvox AI — Next-Gen AI Text Humanizer & Detector" />
+        <meta name="twitter:description" content="Transform AI-generated text into authentic, undetectable human prose with Sanvox AI. Developed by Shivank Thakur." />
+        <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
+        <link rel="image_src" href={`${SITE_URL}/og-image.png`} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body className="antialiased">
