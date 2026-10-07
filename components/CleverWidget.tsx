@@ -83,21 +83,37 @@ export default function CleverWidget({
         </div>
       </div>
 
-      {/* Domain notice banner */}
-      <div className={`px-4 py-2.5 rounded-xl border text-xs flex items-center justify-between gap-3 ${
+      {/* Domain notice & instructions banner */}
+      <div className={`p-4 rounded-xl border text-xs space-y-2 transition-colors ${
         theme === 'dark'
-          ? 'bg-slate-900/50 border-slate-800 text-slate-400'
-          : 'bg-slate-50 border-slate-200 text-slate-600'
+          ? 'bg-amber-500/10 border-amber-500/30 text-amber-200'
+          : 'bg-amber-50 border-amber-200 text-amber-900'
       }`}>
-        <div className="flex items-center gap-2">
-          <Globe className="w-3.5 h-3.5 text-indigo-400 flex-shrink-0" />
-          <span>
-            Allowed Origin: <code className="text-indigo-400 font-mono">https://shivankthakur.com</code>
-          </span>
+        <div className="flex items-start sm:items-center justify-between gap-3 flex-wrap">
+          <div className="flex items-center gap-2">
+            <Info className="w-4 h-4 text-amber-400 flex-shrink-0" />
+            <span className="font-semibold text-amber-300">
+              Why "Content is blocked" appears on localhost?
+            </span>
+          </div>
+          <a
+            href={`https://widgets.cleverhumanizer.ai/embed/${widgetId}?theme=${theme}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-semibold transition-colors"
+          >
+            Direct Test Link <ExternalLink className="w-3 h-3" />
+          </a>
         </div>
-        <span className="text-[11px] text-slate-400 hidden md:inline">
-          For Vercel or localhost, add your URL under Widget Settings in Clever AI dashboard
-        </span>
+        <p className="text-[11px] leading-relaxed text-amber-200/90">
+          Clever AI's server sends a strict security header: <code className="bg-amber-950/60 px-1.5 py-0.5 rounded text-amber-300 font-mono">frame-ancestors https://shivankthakur.com</code>. 
+          To allow this widget to render on <strong>localhost</strong> or <strong>Vercel</strong>:
+        </p>
+        <ol className="list-decimal list-inside text-[11px] space-y-1 text-amber-200/90 pl-1">
+          <li>Clever AI dashboard me apne <strong>Sanvox</strong> widget par jaakar <strong>&gt; Widget settings</strong> kholiye.</li>
+          <li><strong>Allowed websites</strong> me <code className="bg-amber-950/60 px-1.5 py-0.5 rounded text-amber-300 font-mono">http://localhost:3000</code> aur apna Vercel URL add karke Save karein.</li>
+          <li>Save karte hi upar <strong>Refresh</strong> button dabayein — widget turant load ho jayega!</li>
+        </ol>
       </div>
 
       {/* Main Iframe Widget Container */}
