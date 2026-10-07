@@ -1,0 +1,78 @@
+// StealthHumanizer - Multi-Model Chaining (Layer 3)
+// Chain rewrites through different LLM models to mix statistical fingerprints.
+
+import { ModelProvider, StylePreset } from './types';
+import { getProvider } from './providers';
+import { generateWithProvider } from './server/providers-runtime';
+import { getSystemPrompt } from './prompts';
+import { postprocess } from './postprocess';
+
+export interface ChainOptions {
+  text: string;
+  chainModels: { provider: ModelProvider; apiKey: string }[];
+  style: StylePreset;
+  onProgress?: (step: string, model: string) => void;
+}
+
+interface ChainResult {
+  text: string;
+  passes: { provider: ModelProvider; modelName: string }[];
+}
+
+/**
+ * Chain rewrites through multiple LLM models.
+ * Each model adds its own statistical fingerprint, making detection much harder.
+ */
+export async function chainModels(options: ChainOptions): Promise<ChainResult> {
+  const { text, chainModels, style, onProgress } = options;
+  
+  let currentText = text;
+  const passes: { provider: ModelProvider; modelName: string }[] = [];
+
+  for (let i = 0; i < chainModels.length; i++) {
+    const { provider, apiKey } = chainModels[i];
+    const providerInfo = getProvider(provider);
+    if (!providerInfo) continue;
+
+    const modelName = providerInfo.name;
+    const model = providerInfo.defaultModel;
+
+    onProgress?.(`Step ${i + 1}: Chain through ${modelName}`, modelName);
+
+    // Build a progressively lighter prompt for each chain pass
+    // First pass: full rewrite. Later passes: lighter touch to avoid destroying content.
+    let systemPrompt = getSystemPrompt(style);
+
+    // Optimize multi-chain passes: Pass 1 is the Structural Editor, Pass 2+ is the Vocabulary Polisher
+    if (i > 0) {
+      systemPrompt += `\n\n=== ROLE: POLISHING EDITOR ===\nThis text has already been structurally humanized. Your strict focus for this pass is on VOCABULARY ENHANCEMENT and PERFECT FLOW. Do not alter the paragraph lengths or sentence counts. Upgrade the verbs and adjectives to match a premium human standard (e.g., Q1 Journal or Executive level) while guaranteeing flawless grammar.`;
+    }
+
+    try {
+      const result = await generateWithProvider(
+        provider,
+        apiKey,
+        systemPrompt,
+        currentText,
+        {
+          model,
+          temperature: 0.85 + (i * 0.05), // Slightly increasing temperature
+          topP: 0.92 + (i * 0.02),
+        }
+      );
+
+      currentText = result;
+      passes.push({ provider, modelName });
+
+      // Apply post-processing between chain passes (light version)
+      if (i < chainModels.length - 1) {
+        currentText = postprocess(currentText, { light: true });
+      }
+    } catch (err: any) {
+      // If one model fails, skip it and continue with others
+      console.warn(`Chain pass ${i + 1} (${modelName}) failed: ${err.message}`);
+    }
+  }
+
+  return { text: currentText, passes };
+}

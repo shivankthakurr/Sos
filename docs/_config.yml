@@ -1,0 +1,7 @@
+title: StealthHumanizer
+description: "Free open-source AI text humanizer — redirecting to stealthhumanizer.vercel.app"
+url: "https://stealthhumanizer.vercel.app"
+markdown: kramdown
+theme: null
+gems: []
+keep_files: ["index.html", "robots.txt", "sitemap.xml", "og-image.png"]

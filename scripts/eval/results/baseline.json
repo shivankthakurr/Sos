@@ -1,0 +1,155 @@
+{
+  "timestamp": "2026-10-06T07:57:22.598Z",
+  "type": "baseline",
+  "averages": {
+    "heuristicAi": 14,
+    "robertaDocAi": 40.13,
+    "robertaAvgParaAi": 34.83
+  },
+  "results": [
+    {
+      "sample": "sample-02-coffee-beans.txt",
+      "inputWords": 309,
+      "outputWords": 309,
+      "wordsDeltaPct": "0.0%",
+      "heuristicScore": 13,
+      "robertaDocScore": 88.27,
+      "robertaAvgParaScore": 45.22,
+      "robertaMaxParaScore": 99.97,
+      "structurePass": true,
+      "timeMs": 14322
+    },
+    {
+      "sample": "sample-03-sustainable-packaging.txt",
+      "inputWords": 199,
+      "outputWords": 199,
+      "wordsDeltaPct": "0.0%",
+      "heuristicScore": 18,
+      "robertaDocScore": 98.96,
+      "robertaAvgParaScore": 47.44,
+      "robertaMaxParaScore": 99.88,
+      "structurePass": true,
+      "timeMs": 13869
+    },
+    {
+      "sample": "sample-04-dropshipping-guide.txt",
+      "inputWords": 191,
+      "outputWords": 191,
+      "wordsDeltaPct": "0.0%",
+      "heuristicScore": 12,
+      "robertaDocScore": 78.11,
+      "robertaAvgParaScore": 35.77,
+      "robertaMaxParaScore": 99.95,
+      "structurePass": true,
+      "timeMs": 12556
+    },
+    {
+      "sample": "sample-05-email-marketing.txt",
+      "inputWords": 179,
+      "outputWords": 179,
+      "wordsDeltaPct": "0.0%",
+      "heuristicScore": 15,
+      "robertaDocScore": 38.55,
+      "robertaAvgParaScore": 27.91,
+      "robertaMaxParaScore": 97.43,
+      "structurePass": true,
+      "timeMs": 13085
+    },
+    {
+      "sample": "sample-06-local-seo.txt",
+      "inputWords": 184,
+      "outputWords": 184,
+      "wordsDeltaPct": "0.0%",
+      "heuristicScore": 12,
+      "robertaDocScore": 40.22,
+      "robertaAvgParaScore": 21.76,
+      "robertaMaxParaScore": 95.75,
+      "structurePass": true,
+      "timeMs": 12550
+    },
+    {
+      "sample": "sample-07-artisan-sourdough.txt",
+      "inputWords": 175,
+      "outputWords": 175,
+      "wordsDeltaPct": "0.0%",
+      "heuristicScore": 13,
+      "robertaDocScore": 2.82,
+      "robertaAvgParaScore": 48.56,
+      "robertaMaxParaScore": 97.67,
+      "structurePass": true,
+      "timeMs": 11952
+    },
+    {
+      "sample": "sample-08-shopify-conversion.txt",
+      "inputWords": 166,
+      "outputWords": 166,
+      "wordsDeltaPct": "0.0%",
+      "heuristicScore": 12,
+      "robertaDocScore": 0.67,
+      "robertaAvgParaScore": 5.9,
+      "robertaMaxParaScore": 17.83,
+      "structurePass": true,
+      "timeMs": 12001
+    },
+    {
+      "sample": "sample-09-social-media-growth.txt",
+      "inputWords": 161,
+      "outputWords": 161,
+      "wordsDeltaPct": "0.0%",
+      "heuristicScore": 12,
+      "robertaDocScore": 22.75,
+      "robertaAvgParaScore": 43.93,
+      "robertaMaxParaScore": 97.16,
+      "structurePass": true,
+      "timeMs": 11598
+    },
+    {
+      "sample": "sample-10-air-fryer-recipes.txt",
+      "inputWords": 177,
+      "outputWords": 177,
+      "wordsDeltaPct": "0.0%",
+      "heuristicScore": 15,
+      "robertaDocScore": 2.67,
+      "robertaAvgParaScore": 64.23,
+      "robertaMaxParaScore": 99.86,
+      "structurePass": true,
+      "timeMs": 11816
+    },
+    {
+      "sample": "sample-11-subscription-boxes.txt",
+      "inputWords": 146,
+      "outputWords": 146,
+      "wordsDeltaPct": "0.0%",
+      "heuristicScore": 16,
+      "robertaDocScore": 7.35,
+      "robertaAvgParaScore": 23.72,
+      "robertaMaxParaScore": 95.25,
+      "structurePass": true,
+      "timeMs": 11737
+    },
+    {
+      "sample": "sample-12-content-repurposing.txt",
+      "inputWords": 158,
+      "outputWords": 158,
+      "wordsDeltaPct": "0.0%",
+      "heuristicScore": 15,
+      "robertaDocScore": 1.29,
+      "robertaAvgParaScore": 7.48,
+      "robertaMaxParaScore": 18.04,
+      "structurePass": true,
+      "timeMs": 11599
+    },
+    {
+      "sample": "son-of-swaad.txt",
+      "inputWords": 889,
+      "outputWords": 889,
+      "wordsDeltaPct": "0.0%",
+      "heuristicScore": 15,
+      "robertaDocScore": 99.92,
+      "robertaAvgParaScore": 46.04,
+      "robertaMaxParaScore": 99.96,
+      "structurePass": true,
+      "timeMs": 14430
+    }
+  ]
+}

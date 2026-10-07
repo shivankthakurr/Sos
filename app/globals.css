@@ -1,0 +1,308 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root, html.dark {
+  --bg-app: #080c16;
+  --bg-card: rgba(15, 23, 42, 0.75);
+  --border-card: rgba(51, 65, 85, 0.5);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  color-scheme: dark;
+}
+
+html.light {
+  --bg-app: #f8fafc;
+  --bg-card: #ffffff;
+  --border-card: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  color-scheme: light;
+}
+
+body {
+  min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html.dark body {
+  background-color: #080c16;
+  color: #f8fafc;
+}
+
+html.light body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* ==================== CLEAN CARD SURFACES ==================== */
+
+.glass, .glass-card {
+  transition: all 0.2s ease;
+}
+
+html.dark .glass,
+html.dark .glass-card {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(51, 65, 85, 0.55);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+}
+
+html.light .glass,
+html.light .glass-card {
+  background: #ffffff !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* ==================== LIGHT MODE THEME ADAPTATION ==================== */
+
+html.light .app-navbar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .brand-title {
+  color: #0f172a !important;
+}
+
+html.light .nav-tabs-container {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .theme-toggle-btn {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html.light footer {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Universal text color mappings in light mode */
+html.light .text-white:not(.bg-indigo-600 *):not(button.bg-indigo-600):not(.bg-indigo-500 *) {
+  color: #0f172a !important;
+}
+
+/* Ensure buttons with solid accent/indigo backgrounds keep white text */
+html.light .bg-indigo-600,
+html.light .bg-indigo-600 *,
+html.light .bg-indigo-500,
+html.light .bg-indigo-500 *,
+html.light .bg-accent-600,
+html.light .bg-accent-600 * {
+  color: #ffffff !important;
+}
+
+html.light .text-dark-100,
+html.light .text-dark-200,
+html.light .text-slate-100,
+html.light .text-slate-200 {
+  color: #1e293b !important;
+}
+
+html.light .text-dark-300,
+html.light .text-slate-300 {
+  color: #334155 !important;
+}
+
+html.light .text-dark-400,
+html.light .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.light .text-dark-500,
+html.light .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+html.light .nav-tabs-container button:not(.bg-indigo-600) {
+  color: #475569 !important;
+}
+
+html.light .nav-tabs-container button:not(.bg-indigo-600):hover {
+  color: #0f172a !important;
+  background-color: #e2e8f0 !important;
+}
+
+html.light .nav-tabs-container button:not(.bg-indigo-600) svg {
+  color: #64748b !important;
+}
+
+html.light .nav-tabs-container button:not(.bg-indigo-600):hover svg {
+  color: #0f172a !important;
+}
+
+/* Universal background color mappings in light mode */
+html.light .bg-dark-950,
+html.light .bg-dark-900,
+html.light .bg-dark-900\/50,
+html.light .bg-dark-900\/60,
+html.light .bg-dark-900\/80,
+html.light .bg-dark-950\/60,
+html.light .bg-dark-950\/85,
+html.light .bg-dark-950\/90,
+html.light .bg-slate-950,
+html.light .bg-slate-950\/85,
+html.light .bg-slate-900,
+html.light .bg-slate-900\/90,
+html.light .bg-slate-900\/80,
+html.light .bg-slate-900\/60 {
+  background-color: #ffffff !important;
+}
+
+html.light .bg-dark-800,
+html.light .bg-dark-800\/30,
+html.light .bg-dark-800\/40,
+html.light .bg-dark-800\/50,
+html.light .bg-dark-800\/70,
+html.light .bg-dark-800\/80,
+html.light .bg-slate-800,
+html.light .bg-slate-800\/60,
+html.light .bg-slate-800\/80 {
+  background-color: #f8fafc !important;
+}
+
+html.light .bg-dark-700,
+html.light .bg-dark-700\/30,
+html.light .bg-dark-700\/40,
+html.light .bg-dark-700\/50,
+html.light .bg-slate-700 {
+  background-color: #f1f5f9 !important;
+}
+
+/* Universal border mappings in light mode */
+html.light .border-dark-700,
+html.light .border-dark-700\/30,
+html.light .border-dark-700\/40,
+html.light .border-dark-700\/50,
+html.light .border-dark-700\/60,
+html.light .border-dark-700\/70,
+html.light .border-dark-700\/80,
+html.light .border-dark-800,
+html.light .border-dark-800\/60,
+html.light .border-dark-800\/80,
+html.light .border-slate-800,
+html.light .border-slate-800\/80,
+html.light .border-slate-700,
+html.light .border-slate-700\/60 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Form inputs & textareas in Light Mode */
+html.light textarea,
+html.light input:not([type="checkbox"]):not([type="radio"]),
+html.light select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light textarea::placeholder,
+html.light input::placeholder {
+  color: #94a3b8 !important;
+}
+
+html.light textarea:focus,
+html.light input:focus {
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12) !important;
+}
+
+/* Pricing cards in Light Mode */
+html.light #pricing-section .glass-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* ==================== CUSTOM SCROLLBAR ==================== */
+
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 4px;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.45);
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 4px;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.6);
+}
+
+/* ==================== UTILITIES & ANIMATIONS ==================== */
+
+/* Subtle background grid */
+html.dark .bg-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+html.light .bg-grid {
+  background-image:
+    linear-gradient(rgba(100, 116, 139, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 116, 139, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Hover lift */
+.hover-lift {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Progress bar animation */
+.progress-bar {
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Sentence highlight */
+.sentence-highlight {
+  transition: transform 0.15s ease;
+}
+.sentence-highlight:hover {
+  transform: translateX(3px);
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-fade-in-up {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Selection */
+html.dark ::selection {
+  background: rgba(99, 102, 241, 0.3);
+  color: #ffffff;
+}
+html.light ::selection {
+  background: rgba(99, 102, 241, 0.2);
+  color: #0f172a;
+}

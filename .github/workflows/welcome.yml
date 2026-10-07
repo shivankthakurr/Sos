@@ -1,0 +1,19 @@
+name: Welcome New Contributors
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened]
+jobs:
+  welcome:
+    if: ${{ github.event.issue.user.type != 'Bot' && github.event.pull_request.user.type != 'Bot' }}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/first-interaction@v3
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue_message: "Thanks for opening your first issue! We'll review it soon."
+          pr_message: "Welcome! Thanks for your first PR. A maintainer will review it shortly."
