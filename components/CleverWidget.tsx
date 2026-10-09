@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { RefreshCw, Zap, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react';
 
 interface CleverWidgetProps {
@@ -13,7 +13,8 @@ export default function CleverWidget({
   widgetId = '3eba83786be84c2194ebb5281225d137'
 }: CleverWidgetProps) {
   const [iframeKey, setIframeKey] = useState(0);
-  const [iframeHeight, setIframeHeight] = useState(540);
+  // Default height when widget is empty is ~388px
+  const [iframeHeight, setIframeHeight] = useState(390);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   // Unique channel ID for iframe resize handshake protocol
@@ -23,12 +24,11 @@ export default function CleverWidget({
   );
 
   const reloadWidget = () => {
-    setIframeHeight(540);
+    setIframeHeight(390);
     setIframeKey(k => k + 1);
   };
 
-  // Handshake with embedded engine once loaded
-  const handleIframeLoad = () => {
+  const sendHandshake = useCallback(() => {
     if (iframeRef.current?.contentWindow) {
       try {
         iframeRef.current.contentWindow.postMessage(
@@ -39,11 +39,25 @@ export default function CleverWidget({
           },
           'https://widgets.cleverhumanizer.ai'
         );
-      } catch (err) {
-        console.warn('Engine handshake notice:', err);
+      } catch {
+        // cross-origin safety
       }
     }
-  };
+  }, [channel, theme]);
+
+  // Repeatedly ping handshake on mount & load to guarantee receipt
+  useEffect(() => {
+    sendHandshake();
+
+    let count = 0;
+    const interval = setInterval(() => {
+      count++;
+      sendHandshake();
+      if (count >= 12) clearInterval(interval);
+    }, 250);
+
+    return () => clearInterval(interval);
+  }, [sendHandshake]);
 
   // Listen for dynamic resize messages from the backend engine
   useEffect(() => {
@@ -52,7 +66,7 @@ export default function CleverWidget({
       if (event.data?.channel !== channel) return;
       if (event.data?.type === 'clever:resize') {
         const height = event.data.height;
-        if (typeof height === 'number' && Number.isFinite(height) && height >= 200 && height <= 20000) {
+        if (typeof height === 'number' && Number.isFinite(height) && height >= 250 && height <= 20000) {
           setIframeHeight(height);
         }
       }
@@ -62,12 +76,14 @@ export default function CleverWidget({
     return () => window.removeEventListener('message', handleMessage);
   }, [channel]);
 
-  // Exact clipping values to remove external branding:
-  // - Top header (54px): contains external logo and name -> clipped via marginTop: -54px
-  // - Bottom footer (66px): contains external attribution & terms -> clipped via container height trimming
-  const topClip = 54;
-  const bottomClip = 68;
-  const viewportHeight = Math.max(420, iframeHeight - topClip - bottomClip);
+  // Precise clipping values to completely conceal external branding:
+  // - Top header (53px): clipped via marginTop: -56px
+  // - Bottom footer (68px): clipped via bottomClip: 76px
+  // Total removed = 132px.
+  // This ensures neither the top logo/name nor the bottom "Powered by" footer can ever peek through.
+  const topClip = 56;
+  const bottomClip = 76;
+  const viewportHeight = Math.max(250, iframeHeight - topClip - bottomClip);
 
   const isDark = theme === 'dark';
 
@@ -130,7 +146,7 @@ export default function CleverWidget({
       >
         {/* Custom Sanvox Top Header Bar (100% replaces external header) */}
         <div
-          className={`px-5 py-3.5 border-b flex items-center justify-between transition-colors ${
+          className={`px-5 py-3.5 border-b flex items-center justify-between transition-colors select-none ${
             isDark
               ? 'bg-[#171a16] border-[#353c32] text-[#e9eae2]'
               : 'bg-[#fcfbf7] border-[#e4e3d9] text-[#191e1a]'
@@ -168,7 +184,7 @@ export default function CleverWidget({
             key={`${widgetId}-${theme}-${iframeKey}`}
             src={`https://widgets.cleverhumanizer.ai/embed/${widgetId}?theme=${theme}`}
             aria-label="Sanvox AI Humanizer Engine"
-            onLoad={handleIframeLoad}
+            onLoad={sendHandshake}
             style={{
               marginTop: `-${topClip}px`,
               height: `${iframeHeight}px`,
@@ -184,7 +200,7 @@ export default function CleverWidget({
 
         {/* Custom Sanvox Bottom Bar (100% replaces external footer) */}
         <div
-          className={`px-5 py-3 border-t flex flex-col sm:flex-row items-center justify-between gap-2 text-xs transition-colors ${
+          className={`px-5 py-3 border-t flex flex-col sm:flex-row items-center justify-between gap-2 text-xs transition-colors select-none ${
             isDark
               ? 'bg-[#171a16] border-[#353c32] text-[#a6ad9f]'
               : 'bg-[#fcfbf7] border-[#e4e3d9] text-[#5b6159]'
